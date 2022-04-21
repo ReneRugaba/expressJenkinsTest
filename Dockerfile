@@ -1,4 +1,4 @@
-FROM node:17-apline
+FROM node:16-alpine 
 
 WORKDIR /app
 
