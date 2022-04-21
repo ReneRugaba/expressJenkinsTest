@@ -12,7 +12,7 @@ node {
      }
    }
    stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v2/', 'dockerhub') {
+     docker.withRegistry('https://hub.docker.com/v2/repositories/', 'dockerhub') {
        def app = docker.build("rugabarj/docker-nodejs-demo:${commit_id}", '.').push()
      }
    }
