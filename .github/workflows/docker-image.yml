@@ -27,16 +27,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
-        name: Get version
-        id: get_version
-        uses: battila7/get-version-action@v2
-        run: echo ${{ steps.meta.outputs.labels }}
       -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ steps.get_version.outputs.version-without-v }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
