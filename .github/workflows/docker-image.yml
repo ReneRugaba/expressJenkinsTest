@@ -7,6 +7,8 @@ on:
       - '*'
   pull_request:
     branches: [ master ]
+env:
+  VERSION_TAGS: $GITHUB_RUN_ID
 
 jobs:
   docker:
@@ -22,7 +24,7 @@ jobs:
         with:
           images: rugabarj/app
           tags: |
-            type=raw,value=$(date +'%Y-%m-%d %H:%M:%S'),enable=${{ endsWith(GitHub.ref, 'master') }}
+            type=raw,value=$VERSION_TAGS,enable=${{ endsWith(GitHub.ref, 'master') }}
             type=ref,event=tag
           flavor: |
             latest=false
