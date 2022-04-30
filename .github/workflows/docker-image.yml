@@ -7,8 +7,7 @@ on:
       - '*'
   pull_request:
     branches: [ master ]
-env:
-  VERSION_TAGS: $GITHUB_RUN_ID
+
 
 jobs:
   docker:
@@ -29,5 +28,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: rugabarj/app:$VERSION_TAGS
+          tags: rugabarj/app:${{ github.ref/* }}
           
