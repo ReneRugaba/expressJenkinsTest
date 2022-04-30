@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            name/app
+            rugabarj/app
           tag-custom: latest
           tag-semver: |
             {{raw}}
