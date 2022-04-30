@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     tags:
-      - 'v*'
+      - '*'
   pull_request:
     branches: [ master ]
 
@@ -20,11 +20,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: |
-            rugabarj/app
-          tag-custom: latest
-          tag-semver: |
-            {{raw}}
+          tags: |
+            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, ‘master’) }}
+            type=ref,event=tag
+          flavor: |
+            latest=false
     
       -
         name: Login to DockerHub
