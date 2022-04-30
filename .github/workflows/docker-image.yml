@@ -11,7 +11,7 @@ on:
 env:
   DOCKER_USER: ${{secrets.DOCKERHUB_USERNAME}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  REPO_NAME: ${{secrets.DOCKER_USER}}/test
+  REPO_NAME: test
   
 jobs:  
   push-image-to-docker-hub:  # job name    
