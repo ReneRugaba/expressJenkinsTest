@@ -7,7 +7,8 @@ on:
       - '*'
   pull_request:
     branches: [ master ]
-
+env:
+  SHA8: ${GITHUB_SHA::8}
 
 jobs:
   docker:
@@ -16,10 +17,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      - 
-        name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
+  
       -
         name: Login to DockerHub
         uses: docker/login-action@v1
@@ -31,5 +29,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: rugabarj/app:$(date)
+          tags: rugabarj/app:$SHA8
           
