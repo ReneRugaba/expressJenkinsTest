@@ -17,18 +17,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: rugabarj/app
-          tags: |
-            type=raw,value=$VERSION_TAGS,enable=${{ endsWith(GitHub.ref, 'master') }}
-            type=ref,event=tag
-          flavor: |
-            latest=false
-    
+      
       -
         name: Login to DockerHub
         uses: docker/login-action@v1
@@ -39,7 +28,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: rugabarj/app:$VERSION_TAGS
+          
