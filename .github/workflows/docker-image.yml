@@ -16,11 +16,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/releases/tag/})"
-        id: extract_branch
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       -
         name: Login to DockerHub
@@ -33,5 +29,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: rugabarj/app:${{ steps.extract_branch.outputs.branch }}
+          tags: rugabarj/app:${{ env.RELEASE_VERSION }}
           
