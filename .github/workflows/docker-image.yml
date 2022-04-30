@@ -22,7 +22,7 @@ jobs:
         with:
           images: rugabarj/app
           tags: |
-            type=raw,value=colis:${{GITHUB_RUN_ID}},enable=${{ endsWith(GitHub.ref, 'master') }}
+            type=raw,value=colis:$GITHUB_RUN_ID,enable=${{ endsWith(GitHub.ref, 'master') }}
             type=ref,event=tag
           flavor: |
             latest=false
